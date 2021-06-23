@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+    var div = document.querySelector('#app');
+    var viewModel ={}; //리터럴 객체
+     //즉시실행함수 =정의 되자마자 즉시 실행되는 자바스크립트 함수  --  코드가 노출되지 않게함
+     //->즉시실행함수를 변수에 저장하면 함수가 아닌 결과값만 저장됨
+    (function(){ //함수의 유효범위를 지정 외부에서 접근 불가
+     function init(){
+        Object.defineProperty(viewModel,'str',{//(객체대상,객체의 속성)
+        //속성에 접근했을 때의 동작을 정의
+        get: function(){
+            console.log('접근');
+            div.innerHTML='hihihi';
+        },
+        //속성에 값을 할당 했을 때의 동작을 정의
+        set:function(newValue){
+            console.log('할당',newValue);
+            render(newValue);
+        }
+    });//다시 재정의
+    }
+    function render(value){
+        div.innerHTML=value;
+    }
+    init();})();
+    </script>
+</body>
+</html>
