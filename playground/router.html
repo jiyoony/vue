@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+        <router-link to='/Login'>Login</router-link> 
+        <!-- //라우터 내에서 페이지 이동을 위한 링크 -->
+        <router-link to='/Main'>Main</router-link>
+        </div>
+        <router-view></router-view> 
+        <!-- //컴포넌트가 뿌려지는 기준?특정 url 이 뿌려지는  -->
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var LoginComponent={
+            template:'<div>login</div>'
+        }  
+        var MainComponent={
+            template:'<div>main</div>'
+        }
+        //VueRouter 라우터 
+        var router = new VueRouter({
+            //페이지이 라우팅 정보가 routes 에 배열로 담김
+            /*페이지 이동과 관련된 라이브러리 
+            routes:[객체{path: component:화면에 표현될 거  }]
+            */
+            mode:'history', //history api 사용하지 않겠다.
+            routes:[ //페이지의 개수 만큼 객체의 개수가 필요함
+                {
+                    //로그인페이지 정보
+                    path:'/login', 
+                    component: LoginComponent
+                },
+                {
+                    //main 페이지 정보
+                    path:'/main', //페이지 url
+                    component:MainComponent
+                }
+            ]
+        });  
+
+        new Vue({ 
+            el:'#app',
+            router:router, //뷰 인스턴스 생성 객체에 router 객체 넘겨줘야함
+        });
+    </script>
+</body>
+</html>

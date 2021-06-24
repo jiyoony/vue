@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <app-header>v-bind:프록스 속성 이름="상위컴포넌트의 데이터 이름"</app-header> -->
+        <app-header v-bind:propsdata="message"></app-header>
+        <app-content v-bind:pro="num"></app-content>
+    </div>
+    <script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var appHeader={
+            template:'<h1>{{ propsdata }}</h1>',
+            props:['propsdata']
+        }
+        var appContent={
+            template:'<div>{{pro}}</div>',
+            props:['pro']
+        }
+/*
+new Vue({
+    el:인스턴스가 그려지는 화면의 시작점,
+    template:화면에 표시할 요소,
+    componenets: 컴포넌트이름 :컴포넌트 속성,
+    data: 데이터,
+    methods: 이벤트 함수들,
+    created: 라이프 사이클 중 하나,
+    watch: ,
+  });
+
+*/
+        new Vue({ //상위 컴포넌트
+            el:'#app',
+            components:{
+                'app-header': appHeader, //컴포넌트 이름:컴포넌스 속성 =tmeplate=화면에 표시되는 내용
+                'app-content':appContent
+            },
+            data:{
+                message:'hi',
+                num:10
+            }
+        })
+    </script>
+</body> 
+</html>

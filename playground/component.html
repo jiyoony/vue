@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app"> 
+        <app-header></app-header>
+        <app-content></app-content>
+        <app-footer></app-footer>
+    </div>
+    <div id="app2"></div>
+
+    <script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //전역 컴포넌트
+        Vue.component('app-header',{
+            template:'<h1>Header</h1>' //컴포넌트가 표현되는 내용
+        });
+        Vue.component('app-content',{ //컴포넌트 이름으로 컴포넌트 생성가능
+            template:'<div>content</div>'
+        });
+        new Vue({
+            //지역 컴포넌트 
+            el:'#app', //app이라는 찾아가서 붙이겠다. app의 인스턴스만 가능
+            components:{
+                'app-footer':{
+                    template:'<footer>footer</footer>'
+                }
+            }
+        });
+
+        new Vue({
+            el:'#app2'
+
+        })
+        
+        /*뷰 컴포넌트 
+        상위 컴포넌트 
+        ^이벤트 발생 //상위->하위 프롭스(데이터) 속성 전달
+        하위 컴포넌트
+
+        */
+        
+    </script>
+    
+</body>
+</html>
